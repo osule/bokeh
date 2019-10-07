@@ -583,7 +583,8 @@ class HasProps(with_metaclass(MetaHasProps, object)):
 
     def apply_theme(self, property_values):
         ''' Apply a set of theme values which will be used rather than
-        defaults, but will not override application-set values.
+        defaults, and can override application-set values when theme is
+        applied after application-set values.
 
         The passed-in dictionary may be kept around as-is and shared with
         other instances to save memory (so neither the caller nor the
@@ -614,6 +615,7 @@ class HasProps(with_metaclass(MetaHasProps, object)):
 
         if len(property_values) > 0:
             setattr(self, '__themed_values__', property_values)
+            self._property_values.update(property_values)
         elif hasattr(self, '__themed_values__'):
             delattr(self, '__themed_values__')
 

@@ -287,7 +287,7 @@ def test_HasProps_apply_theme_either_simple():
     theme = dict(foo=30)
     c.foo = 50
     c.apply_theme(theme)
-    assert c.foo == 50
+    assert c.foo == 30
 
     # check user set after theme
     c = EitherSimpleDefault()
@@ -301,7 +301,7 @@ def test_HasProps_apply_theme_either_simple():
     theme = dict(foo=30)
     c.foo = [50]
     c.apply_theme(theme)
-    assert c.foo == [50]
+    assert c.foo == 30
 
     # check themed alt type
     c = EitherSimpleDefault()
@@ -331,7 +331,7 @@ def test_HasProps_apply_theme_either_container():
     theme = dict(foo=[30])
     c.foo = [50]
     c.apply_theme(theme)
-    assert c.foo == [50]
+    assert c.foo == [30]
 
     # check user set after theme
     c = EitherContainerDefault()
@@ -345,7 +345,7 @@ def test_HasProps_apply_theme_either_container():
     theme = dict(foo=[30])
     c.foo = 50
     c.apply_theme(theme)
-    assert c.foo == 50
+    assert c.foo == [30]
 
     # check themed alt type
     c = EitherContainerDefault()
@@ -375,7 +375,7 @@ def test_HasProps_apply_theme_func_default():
     theme = dict(foo=30)
     c.foo = 50
     c.apply_theme(theme)
-    assert c.foo == 50
+    assert c.foo == 30
 
     # check user set after theme
     c = IntFuncDefault()
